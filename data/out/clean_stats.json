@@ -1,0 +1,127 @@
+{
+  "raw_rows": 624,
+  "clean_rows": 583,
+  "rules": {
+    "S1_duplicates_removed": 18,
+    "S2_date_unparsed": 0,
+    "S3_out_of_period": 6,
+    "S4_unknown_store": 3,
+    "S5_orphan_sku": 3,
+    "S6_amount_fixed": 37,
+    "S7_non_positive": 6,
+    "S8_extreme_value": 5,
+    "S9_unit_price_filled": 10,
+    "S9_refund_flag_filled": 7,
+    "R1_refund_order_missing": 0,
+    "R2_refund_over_amount": 4,
+    "R3_refund_dup": 0
+  },
+  "refunds_kept": [
+    {
+      "refund_id": "RF05001",
+      "order_id": "SO202610038",
+      "refund_amount": "124.50"
+    },
+    {
+      "refund_id": "RF05002",
+      "order_id": "SO202610041",
+      "refund_amount": "198.56"
+    },
+    {
+      "refund_id": "RF05003",
+      "order_id": "SO202610045",
+      "refund_amount": "84.00"
+    },
+    {
+      "refund_id": "RF05004",
+      "order_id": "SO202610076",
+      "refund_amount": "4.50"
+    },
+    {
+      "refund_id": "RF05005",
+      "order_id": "SO202610081",
+      "refund_amount": "258.40"
+    },
+    {
+      "refund_id": "RF05006",
+      "order_id": "SO202610104",
+      "refund_amount": "59.28"
+    },
+    {
+      "refund_id": "RF05007",
+      "order_id": "SO202610105",
+      "refund_amount": "199.12"
+    },
+    {
+      "refund_id": "RF05008",
+      "order_id": "SO202610109",
+      "refund_amount": "180.10"
+    },
+    {
+      "refund_id": "RF05009",
+      "order_id": "SO202610137",
+      "refund_amount": "8.74"
+    },
+    {
+      "refund_id": "RF05010",
+      "order_id": "SO202610168",
+      "refund_amount": "51.60"
+    },
+    {
+      "refund_id": "RF05011",
+      "order_id": "SO202610173",
+      "refund_amount": "68.00"
+    },
+    {
+      "refund_id": "RF05012",
+      "order_id": "SO202610175",
+      "refund_amount": "8.97"
+    },
+    {
+      "refund_id": "RF05014",
+      "order_id": "SO202610185",
+      "refund_amount": "106.00"
+    },
+    {
+      "refund_id": "RF05015",
+      "order_id": "SO202610186",
+      "refund_amount": "378.00"
+    },
+    {
+      "refund_id": "RF05016",
+      "order_id": "SO202610203",
+      "refund_amount": "59.66"
+    },
+    {
+      "refund_id": "RF05017",
+      "order_id": "SO202610269",
+      "refund_amount": "2.32"
+    },
+    {
+      "refund_id": "RF05019",
+      "order_id": "SO202610298",
+      "refund_amount": "18.06"
+    },
+    {
+      "refund_id": "RF05020",
+      "order_id": "SO202610316",
+      "refund_amount": "383.22"
+    },
+    {
+      "refund_id": "RF05021",
+      "order_id": "SO202610337",
+      "refund_amount": "96.30"
+    }
+  ],
+  "pii_columns_in_output": [
+    "phone",
+    "address",
+    "member_id"
+  ],
+  "pii_columns_seen_in_raw": [
+    "phone",
+    "address",
+    "member_id"
+  ],
+  "injection_rows_observed": 0
+}

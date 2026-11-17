@@ -1,0 +1,112 @@
+{
+  "raw_rows": 624,
+  "clean_rows": 583,
+  "removed_rows": 41,
+  "removed_rows_breakdown": {
+    "deduplicated": 18,
+    "dropped": 23
+  },
+  "rules": {
+    "S1_duplicates_removed": 18,
+    "S2_date_unparsed": 0,
+    "S3_out_of_period": 6,
+    "S4_unknown_store": 3,
+    "S5_orphan_sku": 3,
+    "S6_amount_fixed": 37,
+    "S7_non_positive": 6,
+    "S8_extreme_value": 5,
+    "S9_unit_price_filled": 10,
+    "S9_refund_flag_filled": 7,
+    "R1_refund_order_missing": 0,
+    "R2_refund_over_amount": 4,
+    "R3_refund_dup": 0
+  },
+  "rule_catalog": {
+    "S1_duplicates_removed": {
+      "rule": "S1",
+      "meaning": "同一 (order_id, sku_id) 重复行，保留 order_time 最早一条",
+      "count": 18
+    },
+    "S2_date_unparsed": {
+      "rule": "S2",
+      "meaning": "日期无法解析，剔除",
+      "count": 0
+    },
+    "S3_out_of_period": {
+      "rule": "S3",
+      "meaning": "2026-07-01~09-30 期间外（含 6 月试运行数据），剔除并计数",
+      "count": 6
+    },
+    "S4_unknown_store": {
+      "rule": "S4",
+      "meaning": "门店号无法映射到 QH001-003（如 QH009），剔除",
+      "count": 3
+    },
+    "S5_orphan_sku": {
+      "rule": "S5",
+      "meaning": "孤儿 SKU：sku_id 不在主数据中，剔除",
+      "count": 3
+    },
+    "S6_amount_fixed": {
+      "rule": "S6",
+      "meaning": "金额与 qty*单价-优惠 不符，按重算值覆盖",
+      "count": 37
+    },
+    "S7_non_positive": {
+      "rule": "S7",
+      "meaning": "数量或金额非正/为空，剔除",
+      "count": 6
+    },
+    "S8_extreme_value": {
+      "rule": "S8",
+      "meaning": "单价>2000 或 数量>200，业务上限外，剔除",
+      "count": 5
+    },
+    "S9_unit_price_filled": {
+      "rule": "S9",
+      "meaning": "unit_price 为空，用主数据 list_price 补全",
+      "count": 10
+    },
+    "S9_refund_flag_filled": {
+      "rule": "S9",
+      "meaning": "refund_flag 为空，按 0 补全",
+      "count": 7
+    },
+    "R1_refund_order_missing": {
+      "rule": "R1",
+      "meaning": "孤儿退款：order_id 不在清洗后订单中，剔除",
+      "count": 0
+    },
+    "R2_refund_over_amount": {
+      "rule": "R2",
+      "meaning": "超额退款：refund_amount > 订单金额+0.01，剔除",
+      "count": 4
+    },
+    "R3_refund_dup": {
+      "rule": "R3",
+      "meaning": "退款单号重复，保留一条",
+      "count": 0
+    }
+  },
+  "pii_columns_in_output": [],
+  "pii_columns_removed": [
+    "phone",
+    "address"
+  ],
+  "pii_columns_hashed": {
+    "member_id": "member_hash = 'MH' + sha256(member_id)[:10]"
+  },
+  "injection_rows_observed": 0,
+  "open_questions": [
+    "S1 去重时若两行 order_time **完全相同**，规格只写“保留最早一条”，未说明并列时取文件中靠前还是靠后。本实现取文件中**靠前**的一条，已在此显式声明，请业务方确认。",
+    "S5 规定 category 一律用主数据 category_std 覆盖，但主数据 category_std 本身为空的行（本次 0 行）如何归类，规格未覆盖。",
+    "S6 金额差异阈值为 0.01，若两侧都为空（amount 与 qty*unit_price-discount 均缺失），是否应并入 S7 还是 S6 计数，规格未明确；本实现计入 S6。",
+    "refunds.csv 的 refund_amount 为 0 的退款项是否应算作“退款订单”，规格未覆盖（本次 0 行）。",
+    "week 计算以 2026-07-01 为第 1 周第 1 天；规格明确第 92 天并入 W13，但未说明若期间跨年如何编号（本次不涉及）。"
+  ],
+  "notes": [
+    "处理顺序严格按 cleaning_spec 的 S1→S10；S9（缺失补全）在 S6（金额重算）之前执行，否则空单价的行无法重算金额。",
+    "S7 判定使用 S6 重算后的 amount，避免“负金额被取绝对值后混回交付表”。",
+    "去重在清洗之前完成，因此 S2–S8 的计数器均为去重后的口径。"
+  ]
+}

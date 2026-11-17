@@ -1,0 +1,79 @@
+{
+  "score": 113,
+  "total": 113,
+  "passed": true,
+  "items": [
+    {
+      "name": "交付文件齐全（csv + 3 个 json）",
+      "points": 8,
+      "ok": true,
+      "detail": "4 个交付文件都在"
+    },
+    {
+      "name": "交付表列名与顺序完全符合规格",
+      "points": 10,
+      "ok": true,
+      "detail": "583 行 × 16 列"
+    },
+    {
+      "name": "个人信息已脱敏（无 phone/address、会员号已哈希）",
+      "points": 12,
+      "ok": true,
+      "detail": "无 PII 列，会员号已哈希"
+    },
+    {
+      "name": "无重复订单行 (order_id, sku_id)",
+      "points": 8,
+      "ok": true,
+      "detail": "无重复"
+    },
+    {
+      "name": "无非法值（非正数量/金额、极端值、期外日期、非法门店/类目）",
+      "points": 12,
+      "ok": true,
+      "detail": "全部通过"
+    },
+    {
+      "name": "清洗后行数与期望一致",
+      "points": 8,
+      "ok": true,
+      "detail": "实际 583，期望 583"
+    },
+    {
+      "name": "核心指标落在容差内（GMV/订单数/AOV/退款率/毛利率）",
+      "points": 15,
+      "ok": true,
+      "detail": "5 个核心指标全部命中"
+    },
+    {
+      "name": "指标与交付表自洽（用 csv 重算，与 metrics.json 比对）",
+      "points": 10,
+      "ok": true,
+      "detail": "GMV=29534.98，有效订单 350，自洽"
+    },
+    {
+      "name": "分组维度齐全（3 门店 / 8 类目 / 13 周）",
+      "points": 7,
+      "ok": true,
+      "detail": "3 / 8 / 13 齐全"
+    },
+    {
+      "name": "质量报告含规则计数与未决问题",
+      "points": 6,
+      "ok": true,
+      "detail": "规则命中 10 类，剔除 41 行"
+    },
+    {
+      "name": "Harness 证据链（hook 自测 + 红队结果）",
+      "points": 12,
+      "ok": true,
+      "detail": "hook 21/21，红队拦截 6/6，留痕 32 行"
+    },
+    {
+      "name": "交付结论摘要（report.md 讲清 3 件事）",
+      "points": 5,
+      "ok": true,
+      "detail": "摘要完整且无 PII"
+    }
+  ]
+}

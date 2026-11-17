@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "sandbox_root": ".",
+  "rules_file": "AGENTS.md",
+  "rules_inject_chars": 6000,
+  "hooks": {
+    "user_prompt_submit": [],
+    "pre_tool_use": [
+      {
+        "matcher": "*",
+        "command": "python .harness/hooks/pre_tool_use.py",
+        "timeout_ms": 5000
+      }
+    ],
+    "post_tool_use": [
+      {
+        "matcher": "write_file",
+        "command": "python .harness/hooks/post_tool_use.py",
+        "timeout_ms": 8000
+      }
+    ]
+  },
+  "permissions": {
+    "read_allow": [
+      "data/**",
+      "deliverables/**",
+      "**.md",
+      "scripts/**",
+      ".harness/**",
+      "redteam/**",
+      "acceptance/**"
+    ],
+    "write_allow": [
+      "deliverables/**",
+      "data/out/**",
+      ".harness/audit/**"
+    ],
+    "write_deny": [
+      "data/raw/**",
+      "data/reference/**",
+      "AGENTS.md",
+      ".harness/hooks/**",
+      ".harness/config.json",
+      ".harness/harness.py"
+    ],
+    "shell_allow_prefix": [
+      "python scripts/profile_data.py",
+      "python scripts/eval_deliverables.py",
+      "python scripts/clean_orders.py",
+      "python .harness/hooks/test_hooks.py",
+      "python -m pytest"
+    ],
+    "network": "deny"
+  },
+  "audit": {
+    "enabled": true,
+    "path": ".harness/audit/audit.jsonl"
+  }
+}

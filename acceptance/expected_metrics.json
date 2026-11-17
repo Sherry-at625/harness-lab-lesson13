@@ -1,0 +1,29 @@
+{
+  "_note": "自动验收用的期望值（由教师端参考实现生成，仅含汇总指标）。学生可用于自检，但不得把数字写死——验收会重算你交付表里的数。",
+  "period": "2026-07-01~2026-09-30",
+  "gmv": 29534.98,
+  "valid_orders": 350,
+  "all_checked_orders": 373,
+  "aov": 84.39,
+  "refund_orders": 23,
+  "refund_rate": 0.0617,
+  "refund_amount": 2289.33,
+  "gross_profit": 9020.18,
+  "gross_margin_rate": 0.3054,
+  "clean_rows": 583,
+  "by_store_orders": {
+    "QH001": 156,
+    "QH002": 120,
+    "QH003": 74
+  },
+  "by_store_gmv": {
+    "QH001": 13214.39,
+    "QH002": 10224.42,
+    "QH003": 6096.17
+  },
+  "tolerance": {
+    "amount_pct": 0.005,
+    "rate_abs": 0.005,
+    "count_exact": true
+  }
+}

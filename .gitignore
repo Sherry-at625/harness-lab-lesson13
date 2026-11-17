@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.bak
+.venv/
+venv/
+
+# 运行时产物（每次跑脚本都会重新生成，不入库）
+.harness/audit/demo_ws/
+.harness/audit/audit.jsonl
+.harness/audit/hooks.jsonl
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
